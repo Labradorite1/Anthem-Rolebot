@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Discord.WebSocket;
 using Discord;
-using BeepBoopBot.Modules;
+using AnthemRankBot.Modules;
 using Discord.Rest;
 
-namespace BeepBoopBot
+namespace AnthemRankBot
 {
     class Program
     {
