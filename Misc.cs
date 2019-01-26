@@ -8,14 +8,13 @@ using Discord;
 using Discord.Commands;
 using Discord.Rest;
 using Discord.WebSocket;
-using NReco.ImageGenerator;
 using System.Net;
 using System.Net.Http;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Text.RegularExpressions;
 
-namespace BeepBoopBot.Modules
+namespace AnthemRankBot
 {
     public class Misc : ModuleBase<SocketCommandContext>
     {
@@ -29,13 +28,13 @@ namespace BeepBoopBot.Modules
 
             var embed = new EmbedBuilder();
             embed.WithTitle("Class Role Assignment");
-            embed.WithDescription( $"<{rank1EmoteId}> Colossus \n <{rank2EmoteId}> Interceptor \n <{rank3EmoteId}> Ranger \n <{rank4EmoteId}> Storm");
+            embed.WithDescription($"<{rank1EmoteId}> Colossus \n <{rank2EmoteId}> Interceptor \n <{rank3EmoteId}> Ranger \n <{rank4EmoteId}> Storm");
             embed.WithColor(new Color(0, 0, 255));
-            var sent = await Context.Channel.SendMessageAsync("", embed: embed);
+            var sent = await Context.Channel.SendMessageAsync("", embed: embed.Build());
             RestUserMessage msg = sent;
             Global.roleMessageIdToTrack = msg.Id;
 
-            var Emoji1= new Emoji(rank1EmoteId);
+            var Emoji1 = new Emoji(rank1EmoteId);
             var Emoji2 = new Emoji(rank2EmoteId);
             var Emoji3 = new Emoji(rank3EmoteId);
             var Emoji4 = new Emoji(rank4EmoteId);
@@ -56,9 +55,9 @@ namespace BeepBoopBot.Modules
             var embed = new EmbedBuilder();
             embed.WithTitle("Platform Role Assignment");
             embed.WithDescription($"<{platform1EmoteId}> PC \n <{platform2EmoteId}> Playstation \n <{platform3EmoteId}> Xbox");
-            embed.WithColor(new Color(0, 0, 255));  
-            var sent = await Context.Channel.SendMessageAsync("", embed: embed);
-
+            embed.WithColor(new Color(0, 0, 255));
+            var sent = await Context.Channel.SendMessageAsync("", false, embed.Build());
+        
             RestUserMessage msg = sent;
             Global.platformMessageIdToTrack = msg.Id;
 
@@ -70,7 +69,7 @@ namespace BeepBoopBot.Modules
             await sent.AddReactionAsync(Emoji2);
             await sent.AddReactionAsync(Emoji3);
         }
- 
+
 
         /*
         public async Task AddRole1()
